@@ -31,8 +31,8 @@ export const renderRoutes = () => (
                 <Route path="/project/create" component={CreateProject}/>
                 <Route path="/project/:projectId/edit" component={EditProject}/>
 
-                <Route path="/task/:projectId/create" component={CreateTask}/>
-                <Route path="/task/:projectId/:taskId/edit" component={EditTask}/>
+                <Route path="/project/:projectId/task/create" component={CreateTask}/>
+                <Route path="/project/:projectId/task/:taskId/edit" component={EditTask}/>
 
                 <Route path="/project" component={ProjectHome}>
                     <IndexRoute component={AllProjects}/>

@@ -48,7 +48,7 @@ export const SingleBoard = React.createClass({
 
                     </div>
                     {renderTasks}
-                    <Link  to={"/task/"+projectId+"/create?scrum="+this.props.board}
+                    <Link  to={"/project/"+projectId+"/task/create?scrum="+this.props.board}
                            className="open-card-composer js-open-card-composer"
                            >Add a task…</Link></div>
             </div>
