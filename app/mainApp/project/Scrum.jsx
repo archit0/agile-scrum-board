@@ -60,11 +60,8 @@ export const Scrum = React.createClass({
            <SingleBoard key={i} board={data} tasks={this.data.scrumDict[data]?this.data.scrumDict[data]:[]}
             projectId={projectId}
            />);
-
         return (
-
-
-            <div className="board-wrapper is-show-menu" style={{top:'20%'}}>
+            <div className="board-wrapper is-show-menu" style={{top:'27%'}}>
                 <div className="board-main-content">
                     <div className="board-canvas">
                         <div id="board" className="u-fancy-scrollbar js-no-higher-edits js-list-sortable ui-sortable">

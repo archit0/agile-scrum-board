@@ -15,7 +15,9 @@ export const SingleTask = React.createClass({
         let userDict={};
         for(let x=0;x<users.length;x++)
             userDict[users[x]._id]=users[x].name;
-        return {taskDetails:taskDetails,userDict:userDict};
+
+        let subTasks=DBTask.find({parentTask:this.props.params.taskId}).fetch();
+        return {taskDetails:taskDetails,userDict:userDict,subTasks:subTasks};
     },
     render: function () {
 
@@ -25,20 +27,69 @@ export const SingleTask = React.createClass({
 
         taskDetails=taskDetails[0];
 
+        let parent=null;
+        if(taskDetails.parentTask!=""){
+            parent=<h3>Parent task:
+                <Link className="boards-page-board-section-header-options-item dark-hover text-center"
+
+                      to={"/project/"+this.props.params.projectId+"/task/"+taskDetails.parentTask}>
+                {taskDetails.parentTask}
+            </Link></h3>
+        }
+        let userDict=this.data.userDict;
+        let projectId=this.props.params.projectId;
+        let subTasks=this.data.subTasks.map((data,i)=>
+            <tr key={i}>
+                <td><Link to={"/project/"+projectId+"/task/"+data._id}>{data._id}</Link></td>
+                <td>{data.title}</td>
+                <td>{data.status}</td>
+                <td>{data.assignee==""?"None":userDict[data.assignee]}</td>
+                <td>{data.scrumBoard==""?"None":data.scrumBoard}</td>
+                <td>{data.percentDone}%</td>
+            </tr>);
 
         return (
 
 
             <div>
                 <h1>Task Details</h1>
-                <h3>Title: {taskDetails.title}</h3>
-                <h3>Description: {taskDetails.description}</h3>
-                <h3>Percentage Done: {taskDetails.percentDone}</h3>
-                <h3>Created By: {this.data.userDict[taskDetails.createdBy]}</h3>
-                <h3>Created On: {taskDetails.createdOn}</h3>
-                <h3>Status: {taskDetails.status}</h3>
-                <h3>Scrum Board: {taskDetails.scrumBoard}</h3>
-                <h3>Assignee: {this.data.userDict[taskDetails.assignee]}</h3>
+                {parent}
+                <span>Title:</span><b>{taskDetails.title}</b><br/><br/>
+                <span>Description:</span><b>{taskDetails.description}</b><br/><br/>
+                <span>Percentage Done:</span><b>{taskDetails.percentDone}</b><br/><br/>
+                <span>Created By:</span><b> {this.data.userDict[taskDetails.createdBy]}</b><br/><br/>
+                <span>Created On:</span><b> {taskDetails.createdOn}</b><br/><br/>
+                <span>Status:</span><b> {taskDetails.status}</b><br/><br/>
+                <span>Scrum Board:</span><b> {taskDetails.scrumBoard}</b><br/><br/>
+                <span>Assignee:</span><b> {this.data.userDict[taskDetails.assignee]}</b><br/><br/>
+                <div>
+                    <hr/>
+                    <div>
+                        <h3>{this.data.subTasks.length} Subtasks <Link className="boards-page-board-section-header-options-item dark-hover text-center"
+
+                                                                       to={"/project/"+this.props.params.projectId+"/task/create?parent="+taskDetails._id}>
+                            Add Subtask
+                        </Link></h3>
+
+                    </div>
+
+                    <table className="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>TASK ID</th>
+                            <th>TITLE</th>
+                            <th>STATUS</th>
+                            <th>ASSIGNEE</th>
+                            <th>SCRUM BOARD</th>
+                            <th>PERCENTAGE DONE</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {subTasks}
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
 
         )

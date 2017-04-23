@@ -104,7 +104,8 @@ export const CreateTask = React.createClass({
         }
         return (
             <div>
-
+                <Link className="boards-page-board-section-header-options-item dark-hover text-center" to={"/project/"+this.props.params.projectId}><u>Project Home</u></Link>
+                <hr/>
                     <form onSubmit={this.saveSubmit}>
                         <label>Enter Title: </label>
                         <input type="text" ref="title" placeholder="Enter task tile:"/>
@@ -139,7 +140,7 @@ export const CreateTask = React.createClass({
                         </select>
                         <br/>
                         <label>Percentage Done:</label>
-                        <input type="number"  ref="percentDone" defaultValue={"0"}/>%
+                        <input type="number"  ref="percentDone" defaultValue={"0"}/>
                         <br/>
                         <label>Parent Task Id:</label>
                         <input type="text" id="parentTask" ref="parentTask" defaultValue={parentTask}/>

@@ -23,10 +23,10 @@ export const ProjectRoot = React.createClass({
         }
         return (
             <div>
-                <Link to={"/project/"+this.props.params.projectId}><u>Project Home</u></Link>&nbsp;|&nbsp;
-                <Link to={"/project/"+this.props.params.projectId+"/task/create"}><u>Create Task</u></Link>&nbsp;|&nbsp;
-                <Link to={"/project/"+this.props.params.projectId+"/tasks"}><u>View All Tasks</u></Link>&nbsp;|&nbsp;
-                <Link to={"/project/"+this.props.params.projectId+"/scrum"}><u>Scrum Board</u></Link>
+                <Link className="boards-page-board-section-header-options-item dark-hover text-center" to={"/project/"+this.props.params.projectId}><u>Project Home</u></Link>
+                <Link className="boards-page-board-section-header-options-item dark-hover text-center" to={"/project/"+this.props.params.projectId+"/task/create"}><u>Create Task</u></Link>
+                <Link className="boards-page-board-section-header-options-item dark-hover text-center" to={"/project/"+this.props.params.projectId+"/tasks"}><u>View All Tasks</u></Link>
+                <Link className="boards-page-board-section-header-options-item dark-hover text-center " to={"/project/"+this.props.params.projectId+"/scrum"}><u>Scrum Board</u></Link>
                 <hr/>
                 {this.props.children}
             </div>

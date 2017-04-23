@@ -103,6 +103,8 @@ export const EditTask = React.createClass({
 
         return (
             <div>
+                <Link to={"/project/"+this.props.params.projectId}><u>Project Home</u></Link>
+                <hr/>
                 <h1>Task Id:{this.props.params.taskId}</h1>
                 <form onSubmit={this.saveSubmit}>
                     <label>Enter Title: </label>

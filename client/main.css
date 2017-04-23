@@ -1,5 +1,7 @@
 
-
+body{
+    background-color: white !important;
+}
 @charset "UTF-8"; /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 img, legend {
     border: 0
@@ -6213,7 +6215,7 @@ input[type=text].boards-page-navigation-input {
     color: #8c8c8c;
     display: inline-block;
     margin-left: 8px;
-    padding: 6px 9pt 6px 28px;
+    padding: 6px 9pt 6px 15px;
     position: relative;
     text-decoration: none
 }

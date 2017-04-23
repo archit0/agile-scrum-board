@@ -35,6 +35,7 @@ export const OpenedProject = React.createClass({
                         <i className="fa fa-pencil-square-o" aria-hidden="true"/>
                     </Link>
                 </h1>
+                <br/>
                 <span>Project Name: </span>
                 <span><b>{GETDATA(projectDetails.projectName)}</b></span>
                 <br/>
