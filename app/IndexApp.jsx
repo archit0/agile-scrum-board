@@ -3,11 +3,10 @@ import {Link} from "react-router";
 import Notifications, {notify} from 'react-notify-toast';
 import {Home} from './mainApp/Home';
 import {LoginSignup} from './login/LoginSignup';
-
 export const IndexApp = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData(){
-        let logginHandle=Meteor.loggingIn();
+        let logginHandle = Meteor.loggingIn();
         return {loading: logginHandle};
     },
     contextTypes: {
@@ -15,19 +14,22 @@ export const IndexApp = React.createClass({
     },
     render(){
 
-        let children=null;
-        if(this.data.loading){
-            children=<div className="text-center">
+        let children = null;
+        if (this.data.loading) {
+            children = <div className="text-center">
                 <img className="imgGif" src="/loader.gif" height="100px" width="auto"/>
                 <h2>Loading Please Wait...</h2>
-            </div>
-        }else{
+            </div>;
+        } else {
 
-            if(Meteor.user()){
-                children=this.props.children;
+            if (Meteor.user()) {
+                if(GETDATA(this.props.location.pathname)!="/")
+                children = this.props.children;
+                else
+                    this.context.router.push('/home');
             }
-            else{
-                children=<LoginSignup />
+            else {
+                children = <LoginSignup />
             }
         }
 

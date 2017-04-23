@@ -100,6 +100,8 @@ export const EditProject = React.createClass({
             {data==Meteor.userId()?" (Me)":""}</li>)
         return (
             <div>
+                <Link to={"/project/"+this.props.params.projectId}><u>Project Home</u></Link>
+                <hr/>
                 <h3>Update Details</h3>
                 <form onSubmit={this.saveSubmit}>
                     <label>Name:</label>

@@ -9,19 +9,26 @@ export const CreateProject = React.createClass({
         event.preventDefault();
         let projectName = this.refs.projectName.value.trim();
         let projectDisc=this.refs.projectDesc.value.trim();
-        Meteor.call('createNewProject', projectName, projectDisc, (err, res)=> {
-            if (err) {
-                notify.show('Unable to create project', "error");
-            }
-            else {
-                console.log(res);
-                notify.show("Project Created", "success");
-            }
-        });
+        if(projectName.length>=1){
+            Meteor.call('createNewProject', projectName, projectDisc, (err, res)=> {
+                if (err) {
+                    notify.show('Unable to create project', "error");
+                }
+                else {
+                    this.refs.projectName.value="";
+                    this.refs.projectDesc.value="";
+                    notify.show("Project Created", "success");
+                }
+            });
+        }else{
+            notify.show("Enter valid project name","error");
+        }
+
     },
     render: function () {
         return (
             <div>
+                <h1>Create New project</h1>
                 <form onSubmit={this.createProject}>
                     <input type="text" ref="projectName" placeholder="Enter project name"/>
                     <input type="text" ref="projectDesc" placeholder="Enter project description"/>

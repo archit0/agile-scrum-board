@@ -8,30 +8,55 @@ export const OpenedProject = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData(){
         let projectId=this.props.params.projectId;
-        let tasks=Meteor.subscribe('allTasks',this.props.params.projectId);
-        return {loading:!tasks.ready(),
-            projectDetails:DBProjects.find({_id:projectId}).fetch()[0]
+        let users = Meteor.users.find().fetch();
+        let userDict = {};
+        users.forEach((data)=>
+            userDict[data._id] = data.name)
+        return {
+            projectDetails:DBProjects.find({_id:projectId}).fetch()[0],userDict:userDict
         }
     },
 
     render: function () {
 
 
-        if(this.data.loading){
-            return (<div className="text-center">
-                <img className="imgGif" src="/loader.gif" height="100px" width="auto"/>
-                <h2>Loading Project Data...</h2>
-            </div>);
-        }
-        console.log("Project Data loaded");
+
+
+
+
         let projectDetails=this.data.projectDetails;
 
-
+        let users=projectDetails.users.map((data,i)=>
+            <li style={{paddingLeft:'3%'}} key={i}><b>{this.data.userDict[data]}</b></li> );
         return (
             <div>
-                <h1>Project Name: {GETDATA(projectDetails.projectName)}</h1>
-                <h3>Project Description: {GETDATA(projectDetails.description)}</h3>
-                {this.props.children}
+                <h1><u>Project home</u>&nbsp;
+                    <Link to={"/project/"+this.props.params.projectId+"/edit"}>
+                        <i className="fa fa-pencil-square-o" aria-hidden="true"/>
+                    </Link>
+                </h1>
+                <span>Project Name: </span>
+                <span><b>{GETDATA(projectDetails.projectName)}</b></span>
+                <br/>
+                <br/>
+                <span>Project Description: </span>
+                <span><b>{GETDATA(projectDetails.description)}</b></span>
+                <br/>
+                <br/>
+                <span>Created on: </span>
+                <span><b>{GETDATA(projectDetails.createdOn)}</b></span>
+                <br/>
+                <br/>
+                <span>Scrum Boards: </span>
+                <span><b>{GETDATA(projectDetails.scrumBoards).join()}</b></span>
+                <br/>
+                <br/>
+                <span>Created by: </span>
+                <span><b>{this.data.userDict[projectDetails.createdBy]+(Meteor.userId()==projectDetails.createdBy?" (Me)":"")}</b></span>
+                <br/>
+                <br/>
+                <span>Users: </span>
+                <span><ul>{users}</ul></span>
             </div>
 
         )

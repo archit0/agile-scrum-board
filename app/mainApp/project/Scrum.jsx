@@ -57,7 +57,7 @@ export const Scrum = React.createClass({
         let userDict = this.data.userDict;
         let projectId = this.props.params.projectId;
         let task = this.data.scrums.map((data, i)=>
-           <SingleBoard key={i} board={data} tasks={this.data.scrumDict[data]}
+           <SingleBoard key={i} board={data} tasks={this.data.scrumDict[data]?this.data.scrumDict[data]:[]}
             projectId={projectId}
            />);
 

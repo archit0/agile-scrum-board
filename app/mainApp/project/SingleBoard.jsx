@@ -2,9 +2,7 @@ import React, {PropTypes} from "react";
 import {Link} from "react-router";
 import  {notify} from 'react-notify-toast';
 import {DBTask} from '../../../services/TaskService';
-
 export const SingleBoard = React.createClass({
-
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },
@@ -17,7 +15,6 @@ export const SingleBoard = React.createClass({
         return {tasks: DBTask.find().fetch(), userDict: userDict};
     },
     render: function () {
-
         let tasks = this.props.tasks;
         let projectId=this.props.projectId;
         let renderTasks = this.props.tasks.map((data, i)=>
@@ -27,9 +24,7 @@ export const SingleBoard = React.createClass({
                         <div className="list-card-labels js-card-labels"></div>
                         <Link  to={"/project/"+projectId+"/task/"+data._id} className="list-card-title js-card-name" dir="auto">{data.title}</Link>
                         <span className="js-badges"><div className="badge is-due-past" title="Status">
-
-                            <span
-                            className="badge-text">{data.status}</span>
+                            <span className="badge-text">{data.status}</span>
                         </div>
                         </span>
                     </div>
@@ -37,15 +32,12 @@ export const SingleBoard = React.createClass({
             </div>
         );
         return (
-
-
             <div className="js-list list-wrapper">
                 <div className="list js-list-content">
                     <div className="list-header js-list-header u-clearfix is-menu-shown">
-                        <h2 className="list-header-name-assist js-list-name-assist" style={{display: 'block'}}>
+                        <h4 className="list-header-name-assist js-list-name-assist" style={{display: 'block'}}>
                             {this.props.board}
-                        </h2>
-
+                        </h4>
                     </div>
                     {renderTasks}
                     <Link  to={"/project/"+projectId+"/task/create?scrum="+this.props.board}
