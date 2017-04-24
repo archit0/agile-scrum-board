@@ -17,10 +17,11 @@ export const AllTasks = React.createClass({
        return {tasks:DBTask.find().fetch(),userDict:userDict};
     },
     getInitialState:function(){
-        return {statusFilter:"ANY",assigneeFilter:"ANY"};
+        return {statusFilter:"ANY",assigneeFilter:"ANY",searchFilter:""};
     },
     changeFilter:function () {
-      this.setState({statusFilter:this.refs.filterStatus.value,
+      this.setState({searchFilter:this.refs.searchText.value,
+          statusFilter:this.refs.filterStatus.value,
           assigneeFilter:this.refs.filterAssignee.value});
 
     },
@@ -37,6 +38,9 @@ export const AllTasks = React.createClass({
 
                 allTasks=allTasks.filter((data)=>data.assignee==this.state.assigneeFilter);
             }
+            if(this.state.searchFilter!=""){
+                allTasks=allTasks.filter((data)=>data.title.toLowerCase().indexOf(this.state.searchFilter.toLowerCase().trim())>=0);
+            }
 
         //Filtering End
         let task=allTasks.map((data,i)=>
@@ -51,9 +55,7 @@ export const AllTasks = React.createClass({
             </tr>);
 
 
-        let userChoice= Object.keys(userDict).map((data,i)=>
-            <option key={i} value={data}>{userDict[data]}{data==Meteor.userId()?" (Me)":""}
-            </option>);
+
         return (
 
 
@@ -61,6 +63,8 @@ export const AllTasks = React.createClass({
                 <h1>All Tasks</h1>
                 <div>
                     <h4>Filter</h4>
+                    <span>Search:</span>
+                    <input onChange={this.changeFilter} type="text" ref="searchText"/>
                     <span>Status:</span>&nbsp;
                     <select onChange={this.changeFilter} style={{width:"100px"}} ref="filterStatus" defaultValue={"ANY"}>
                         <option value="ANY">Any</option>
@@ -77,7 +81,9 @@ export const AllTasks = React.createClass({
                     <select onChange={this.changeFilter} style={{width:"150px"}} ref="filterAssignee" defaultValue={"ANY"}>
                        <option value="ANY">Any</option>
                         <option value="">None</option>
-                        {userChoice}
+                        {Object.keys(userDict).map((data,i)=>
+                        <option key={i} value={data}>{userDict[data]}{data==Meteor.userId()?" (Me)":""}
+                        </option>)}
                     </select>
                 </div>
                 <table className="table table-striped">
