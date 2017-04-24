@@ -62,11 +62,12 @@ export const EditTask = React.createClass({
             title: title, description: description,
             assignee: assignee, scrumBoard: scrumBoard, status: status, percentDone: percentDone, parentTask: parentTask
         };
-        Meteor.call('createTask', projectId, taskObject, (err, res)=> {
+        Meteor.call('updateTask', projectId, taskObject, this.props.params.taskId,
+        (err, res)=> {
             if (res) {
-                notify.show("Task Created", "success");
+                notify.show("Task Updated", "success");
             } else {
-                notify.show("Unable to create Task", "error");
+                notify.show("Unable to update Task", "error");
             }
         });
 

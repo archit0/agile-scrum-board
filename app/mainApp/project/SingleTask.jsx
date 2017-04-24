@@ -52,7 +52,11 @@ export const SingleTask = React.createClass({
 
 
             <div>
-                <h1>Task Details</h1>
+                <h1>Task Details &nbsp;
+                    <Link to={"/project/"+this.props.params.projectId+"/task/"+this.props.params.taskId+"/edit"}>
+                        <i className="fa fa-pencil-square-o" aria-hidden="true"/>
+                    </Link>
+                </h1>
                 {parent}
                 <span>Title:</span><b>{taskDetails.title}</b><br/><br/>
                 <span>Description:</span><b>{taskDetails.description}</b><br/><br/>
