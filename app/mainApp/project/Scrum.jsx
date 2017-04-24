@@ -84,12 +84,11 @@ export const Scrum = React.createClass({
         return (
             <div>
                 <div>
-                    <h4>Filter</h4>
-                    <span>Search:</span>
-                    <input onChange={this.changeFilter} type="text" ref="searchText"/>
+                    <input style={{float:'right'}} onChange={this.changeFilter} type="text" placeholder="Search" ref="searchText"/>&nbsp;
+                    <span style={{float:'left'}}>
                     <span>Status:</span>&nbsp;
-                    <select onChange={this.changeFilter} style={{width: "100px"}} ref="filterStatus"
-                            defaultValue={"ANY"}>
+                        <select onChange={this.changeFilter} style={{width: "100px"}} ref="filterStatus"
+                                defaultValue={"ANY"}>
                         <option value="ANY">Any</option>
                         <option value="Draft">Draft</option>
                         <option value="Open">Open</option>
@@ -100,19 +99,23 @@ export const Scrum = React.createClass({
                         <option value="Re-opened">Re-opened</option>
                     </select>
 
-                    &nbsp;<span>Assignee:</span>&nbsp;
-                    <select onChange={this.changeFilter} style={{width: "150px"}} ref="filterAssignee"
-                            defaultValue={"ANY"}>
+                        <br/><span>Assignee:</span>&nbsp;
+                        <select onChange={this.changeFilter} style={{width: "150px"}} ref="filterAssignee"
+                                defaultValue={"ANY"}>
                         <option value="ANY">Any</option>
                         <option value="">None</option>
-                        {Object.keys(userDict).map((data, i)=>
-                            <option key={i} value={data}>{userDict[data]}{data == Meteor.userId() ? " (Me)" : ""}
-                            </option>)}
+                            {Object.keys(userDict).map((data, i)=>
+                                <option key={i} value={data}>{userDict[data]}{data == Meteor.userId() ? " (Me)" : ""}
+                                </option>)}
                     </select>
+                        </span>
                 </div>
-                <div className="board-wrapper is-show-menu" style={{top: '40%'}}>
+                <br/><br/>
+                <div className="board-wrapper is-show-menu" style={{top: '50%'}}>
+
                     <div className="board-main-content">
                         <div className="board-canvas">
+
                             <div id="board"
                                  className="u-fancy-scrollbar js-no-higher-edits js-list-sortable ui-sortable">
                                 {task}

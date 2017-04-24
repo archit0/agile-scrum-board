@@ -62,11 +62,11 @@ export const AllTasks = React.createClass({
             <div>
                 <h1>All Tasks</h1>
                 <div>
-                    <h4>Filter</h4>
-                    <span>Search:</span>
-                    <input onChange={this.changeFilter} type="text" ref="searchText"/>
+                    <input style={{float:'right'}} onChange={this.changeFilter} type="text" placeholder="Search" ref="searchText"/>&nbsp;
+                    <span style={{float:'left'}}>
                     <span>Status:</span>&nbsp;
-                    <select onChange={this.changeFilter} style={{width:"100px"}} ref="filterStatus" defaultValue={"ANY"}>
+                        <select onChange={this.changeFilter} style={{width: "100px"}} ref="filterStatus"
+                                defaultValue={"ANY"}>
                         <option value="ANY">Any</option>
                         <option value="Draft">Draft</option>
                         <option value="Open">Open</option>
@@ -77,14 +77,16 @@ export const AllTasks = React.createClass({
                         <option value="Re-opened">Re-opened</option>
                     </select>
 
-                    &nbsp;<span>Assignee:</span>&nbsp;
-                    <select onChange={this.changeFilter} style={{width:"150px"}} ref="filterAssignee" defaultValue={"ANY"}>
-                       <option value="ANY">Any</option>
+                        <br/><span>Assignee:</span>&nbsp;
+                        <select onChange={this.changeFilter} style={{width: "150px"}} ref="filterAssignee"
+                                defaultValue={"ANY"}>
+                        <option value="ANY">Any</option>
                         <option value="">None</option>
-                        {Object.keys(userDict).map((data,i)=>
-                        <option key={i} value={data}>{userDict[data]}{data==Meteor.userId()?" (Me)":""}
-                        </option>)}
+                            {Object.keys(userDict).map((data, i)=>
+                                <option key={i} value={data}>{userDict[data]}{data == Meteor.userId() ? " (Me)" : ""}
+                                </option>)}
                     </select>
+                        </span>
                 </div>
                 <table className="table table-striped">
                     <thead>
