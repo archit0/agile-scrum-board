@@ -111,7 +111,7 @@ export const Scrum = React.createClass({
                         </span>
                 </div>
                 <br/><br/>
-                <div className="board-wrapper is-show-menu" style={{top: '50%'}}>
+                <div className="board-wrapper is-show-menu" style={{top: '30%'}}>
 
                     <div className="board-main-content">
                         <div className="board-canvas">
