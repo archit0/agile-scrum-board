@@ -60,7 +60,7 @@ export const LoginSignup = React.createClass({
     },
     render: function () {
         let tab1=<div id="login" className="tab-pane fade in active">
-
+            <br/>
             <form className="form-horizontal" onSubmit={this.initiateLogin}>
                 <div className="form-group">
                     <label className="control-label col-sm-2" htmlFor="email">Email:</label>
@@ -82,6 +82,7 @@ export const LoginSignup = React.createClass({
             </form>
         </div>;
         let tab2=<div id="signup" className="tab-pane fade">
+            <br/>
             <form className="form-horizontal" onSubmit={this.initiateSignup}>
                 <div className="form-group">
                     <label className="control-label col-sm-2" htmlFor="name">Name</label>
