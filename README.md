@@ -10,7 +10,7 @@ $ npm install
 
 ## Running
 ```
-meteor run
+$ meteor run
 ```
 
 
