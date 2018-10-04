@@ -1,6 +1,5 @@
 import React, {PropTypes} from "react";
 import {Link} from "react-router";
-import  {notify} from 'react-notify-toast';
 import {IndexDescription} from '../mainApp/IndexDescription';
 
 export const Home = React.createClass({
