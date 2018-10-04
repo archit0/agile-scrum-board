@@ -13,7 +13,6 @@ import {AllProjects} from '../app/mainApp/project/AllProjects';
 import {ProjectHome} from '../app/mainApp/project/ProjectHome';
 import {OpenedProject} from '../app/mainApp/project/OpenedProject';
 import {ProjectRoot} from '../app/mainApp/project/ProjectRoot';
-
 import {AllTasks} from '../app/mainApp/project/AllTasks';
 import {Scrum} from '../app/mainApp/project/Scrum';
 import {SingleTask} from '../app/mainApp/project/SingleTask';
@@ -43,6 +42,3 @@ export const renderRoutes = () => (
         </Route>
     </Router>
 );
-/*
-
- */
