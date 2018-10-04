@@ -19,7 +19,7 @@ img, legend {
 
 .pika-single .pika-table, table {
     border-collapse: collapse;
-    border-spacing: 0
+    border-spacing: 0;
 }
 
 html {
@@ -28,7 +28,7 @@ html {
 }
 
 body {
-    margin: 0
+    margin: 10;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
@@ -37,12 +37,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 audio, canvas, progress, video {
     display: inline-block;
-    vertical-align: baseline
+    vertical-align: baseline;
 }
 
 audio:not([controls]) {
     display: none;
-    height: 0
+    height: 0px;
 }
 
 [hidden], template {
@@ -54,11 +54,11 @@ a {
 }
 
 a:active, a:hover {
-    outline: 0
+    outline: 0px;
 }
 
 abbr[title] {
-    border-bottom: 1px dotted
+    border-bottom: 1px dotted;
 }
 
 b, optgroup, strong {
@@ -71,21 +71,21 @@ dfn {
 
 mark {
     background: #ff0;
-    color: #000
+    color: #000;
 }
 
 small {
-    font-size: 80%
+    font-size: 80%;
 }
 
 sub, sup {
     font-size: 75%;
-    line-height: 0;
-    vertical-align: baseline
+    line-height: 1;
+    vertical-align: baseline;
 }
 
 sup {
-    top: -.5em
+    top: -0.5em;
 }
 
 sub {
