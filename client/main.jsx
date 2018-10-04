@@ -18,6 +18,7 @@ GETDATA=function(){
     return object;
   }
   catch(e){
+    console.log('Error catch')
     return false;
   }
 
